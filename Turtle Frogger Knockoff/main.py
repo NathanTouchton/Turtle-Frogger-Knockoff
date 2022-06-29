@@ -1,7 +1,7 @@
 from turtle import Screen
 from time import sleep
-from player import Player
-from car_manager import CarManager
+from player import Player, STARTING_POSITION
+from car_manager import CarManager, MOVE_INCREMENT
 from scoreboard import Scoreboard
 
 screen = Screen()
@@ -15,16 +15,26 @@ car = CarManager()
 
 screen.onkeypress(fun=player.move, key="Up")
 
-game_is_on = True
-CAR_VARIABLE = 6
-while game_is_on:
+GAME_IS_ON = True
+CAR_VARIABLE = 5
+while GAME_IS_ON:
+
     sleep(0.1)
     screen.update()
     CAR_VARIABLE -= 1
     if CAR_VARIABLE == 0:
         car.create_car()
-        CAR_VARIABLE = 6
-    # if player.distance(car) <= 
+        CAR_VARIABLE = 5
+
+    car.move()
+
+    for item in car.car_list:
+        if item.distance(player) <= 20:
+            GAME_IS_ON = False
+
+    if player.ycor() >= 250:
+        player.goto(STARTING_POSITION)
+        MOVE_INCREMENT += 3
 
 screen.exitonclick()
 

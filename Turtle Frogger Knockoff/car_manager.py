@@ -3,29 +3,26 @@ from turtle import Turtle
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 7
 
-class CarManager(Turtle):
+class CarManager:
     def __init__(self):
-        super().__init__()
+        self.car_list = []
         self.create_car()
 
     def create_car(self):
-        self.color(choice(COLORS))
-        self.shape("square")
-        self.shapesize(stretch_len=2)
-        self.penup()
-        self.seth(180)
-        self.goto(x=320, y=randint(-250, 250))
-        self.forward(10)
+        car = Turtle()
+        car.color(choice(COLORS))
+        car.shape("square")
+        car.shapesize(stretch_len=2)
+        car.penup()
+        car.seth(180)
+        car.goto(x=320, y=randint(-250, 250))
+        self.car_list.append(car)
 
-    def create_hitbox(self):
-        x_coordinates = self.xcor()
-        y_coordinates = self.ycor()
-        right_side = x_coordinates + 20
-        left_side = x_coordinates - 20
-        top = y_coordinates + 20
-        bottom = y_coordinates - 20
+    def move(self):
+        for car in self.car_list:
+            car.forward(MOVE_INCREMENT)
 
 # Create cars that are 20px high by 40px wide that are randomly generated along the y-axis and move to the left edge of the screen. 
 # No cars should be generated in the top and bottom 50px of the screen (think of it as a safe zone for our little turtle). 
