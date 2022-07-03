@@ -3,12 +3,12 @@ from turtle import Turtle
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 7
 
 class CarManager:
     def __init__(self):
         self.car_list = []
         self.create_car()
+        self.move_increment = 7
 
     def create_car(self):
         car = Turtle()
@@ -22,7 +22,7 @@ class CarManager:
 
     def move(self):
         for car in self.car_list:
-            car.forward(MOVE_INCREMENT)
+            car.forward(self.move_increment)
 
 # Create cars that are 20px high by 40px wide that are randomly generated along the y-axis and move to the left edge of the screen. 
 # No cars should be generated in the top and bottom 50px of the screen (think of it as a safe zone for our little turtle). 
