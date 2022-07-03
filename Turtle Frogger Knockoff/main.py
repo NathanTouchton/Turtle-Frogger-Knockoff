@@ -20,7 +20,6 @@ screen.onkeypress(fun=player.move, key="Up")
 GAME_IS_ON = True
 CAR_VARIABLE = 5
 while GAME_IS_ON:
-
     sleep(0.1)
     screen.update()
     CAR_VARIABLE -= 1
